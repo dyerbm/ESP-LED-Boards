@@ -1,0 +1,20 @@
+Removed Pin From Net: NetName=GND Pin=U4-5
+Removed Pin From Net: NetName=GND Pin=U5-5
+Change Component Footprint: Designator=C1 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C2 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C3 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C4 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C5 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C6 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=C9 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R1 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R2 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R3 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R4 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R5 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R6 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R7 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R8 Old Footprint=0603 New Footprint=6-0805_M
+Change Component Footprint: Designator=R9 Old Footprint=0603 New Footprint=6-0805_M
+Added Pin To Net: NetName=3V3 Pin=U4-5
+Added Pin To Net: NetName=3V3 Pin=U5-5

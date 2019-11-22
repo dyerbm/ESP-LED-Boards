@@ -1,0 +1,37 @@
+Removed Pin From Net: NetName=GND Pin=D5-6
+Removed Pin From Net: NetName=3V3 Pin=D6-5
+Removed Pin From Net: NetName=GND Pin=D6-6
+Removed Pin From Net: NetName=3V3 Pin=P2-1
+Removed Pin From Net: NetName=5V Pin=Q1-3
+Removed Pin From Net: NetName=3V3 Pin=R8-1
+Removed Pin From Net: NetName=LED2 Pin=U2-6
+Removed Member From Class: ClassName=ESP-LED-Schematic Member=D6
+Removed Member From Class: ClassName=ESP-LED-Schematic Member=Q1
+Removed Member From Class: ClassName=ESP-LED-Schematic Member=R8
+Change Component Comment : Designator=U3 Old Comment=TPS63031DSKR New Comment=Part Number: TPS63031DSKR
+Added Component: Designator=U4(*SOT65P210X110-6N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Nexperia USA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "74LVC1T45GW,125"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOT-363 Nexperia USA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/74LVC1T45GW%2C125/Nexperia%20USA%20Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C4-2
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=5V Pin=C6-2
+Added Pin To Net: NetName=5V Pin=J1-1
+Added Pin To Net: NetName=5V Pin=P1-2
+Added Pin To Net: NetName=5V Pin=P2-1
+Added Pin To Net: NetName=5V Pin=U1-10
+Added Pin To Net: NetName=3V3 Pin=U4-1
+Added Pin To Net: NetName=GND Pin=U4-2
+Added Pin To Net: NetName=LED2 Pin=U4-4
+Added Pin To Net: NetName=GND Pin=U4-5
+Added Pin To Net: NetName=5V Pin=U4-6
+Change Net Name : Old Net Name=5V New Net Name=VIN
+Added Pin To Net: NetName=NetU2_6 Pin=U2-6
+Added Pin To Net: NetName=NetU2_6 Pin=U4-3
+Added Net: Name=NetU2_6
+Added Member To Class: ClassName=ESP-LED-Schematic Member=Component U4 74LVC1T45GW,125

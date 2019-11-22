@@ -1,0 +1,845 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD18\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2019-07-09</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11:35:58 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc" class="file"><acronym title="C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc">C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">167</td></tr>
+</table>
+</td>
+</table><a name="IDJ5JD1YNACW20B0BNQKTCVCU4XOQ1PKLTQO43QFFATJ2THZTAE4MF"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNSJKZOQU0SP5CBLLKN4W1HMDBI03RNPVCVZ2T3HA1SCEOGVS5NKC">Clearance Constraint (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBWGIJ0ZBHBUTB03DWZOM21WH0E3HUICMBMQEDFOPWIVXBJBM1MGH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGRQTOB4SXQWTBMXJQXLOMOKFGG5QNIDUZDDGKQDSH2HQ5EN4QPWD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKFEZ33MLGLIAODCBWW0IRXMDPKYSNVOZQI3H0GJSS00UXXLA13BI">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGXSJZRMIUQPEK2UAIOBKMKLA1HG0BU3XKWBGD5GZ5IWXDUA2H2XH">Width Constraint (Min=6mil) (Max=25mil) (Preferred=10mil) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID00XJ5T3TUQKGLFXJRTAYBSFTROGIOJO4NVC3XKIBAXZOQASKWVNJ">Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1NGG5KZTWAFWEM54HFIZQTIBHJMCUISBG4EHWDO4RJOPZNZDRPOI">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</a></td>
+<td class="column2">4</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDWXVZOHARXGP1MQTYTASJBGA5KGOWFCS3GKWYCFGVTAKIWQ41OHON">Hole To Hole Clearance (Gap=10mil) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSCNL5V42JNLVG2DH4ELNGGTEUI23EJCUQ410WIH4P0CHB4MPMHLK">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</a></td>
+<td class="column2">78</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDI1I3LSFPVGKCH424H452KWZHOCYG3ANGAD0UQ3DFM4TNZ2FJLJSI">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</a></td>
+<td class="column2">77</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDECO2KZKWE1QNLGFXWAX5J0I5VCVDRXOYGYCHHYIETX4WAUDKEKIJ">Silk to Silk (Clearance=10mil) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID45LJIYKTJDR4IW5EXAO1PWBF2B5YIHB0DH4ED2FIHLAI3GUD35OH">Net Antennae (Tolerance=0mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGBSOUXCUY00HGWTJUXSNDEBTTJQEUA4MRA2JKYC1DYAVOHJTTIGE">Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">167</td>
+</tr>
+</table><br><a name="IDGXSJZRMIUQPEK2UAIOBKMKLA1HG0BU3XKWBGD5GZ5IWXDUA2H2XH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=6mil) (Max=25mil) (Preferred=10mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2232.829mil|Location2.X=2241.231mil|Location1.Y=651.293mil|Location2.Y=654.297mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2232.829mil|Location2.X=2241.231mil|Location1.Y=651.293mil|Location2.Y=654.297mil|Absolute=True">Width Constraint: Track (2230.984mil,652.795mil)(2237.677mil,652.795mil) on Top Layer Actual Width = 0.004mil, Target Width = 6mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.766mil|Location2.X=2295.168mil|Location1.Y=926.884mil|Location2.Y=929.888mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2286.766mil|Location2.X=2295.168mil|Location1.Y=926.884mil|Location2.Y=929.888mil|Absolute=True">Width Constraint: Track (2284.921mil,928.386mil)(2291.614mil,928.386mil) on Top Layer Actual Width = 0.004mil, Target Width = 6mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID1NGG5KZTWAFWEM54HFIZQTIBHJMCUISBG4EHWDO4RJOPZNZDRPOI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole Size Constraint (Min=1mil) (Max=100mil) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1835.32mil|Location2.X=1954.68mil|Location1.Y=1850.32mil|Location2.Y=1969.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1835.32mil|Location2.X=1954.68mil|Location1.Y=1850.32mil|Location2.Y=1969.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (1895mil,1910mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1835.32mil|Location2.X=1954.68mil|Location1.Y=390.32mil|Location2.Y=509.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1835.32mil|Location2.X=1954.68mil|Location1.Y=390.32mil|Location2.Y=509.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (1895mil,450mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=715.32mil|Location2.X=834.68mil|Location1.Y=1850.32mil|Location2.Y=1969.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=715.32mil|Location2.X=834.68mil|Location1.Y=1850.32mil|Location2.Y=1969.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (775mil,1910mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=715.32mil|Location2.X=834.68mil|Location1.Y=390.32mil|Location2.Y=509.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=715.32mil|Location2.X=834.68mil|Location1.Y=390.32mil|Location2.Y=509.68mil|Absolute=True">Hole Size Constraint: (118.11mil &gt; 100mil) Via (775mil,450mil) from Top Layer to Bottom Layer Actual Hole Size = 118.11mil</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDSCNL5V42JNLVG2DH4ELNGGTEUI23EJCUQ410WIH4P0CHB4MPMHLK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.8mil|Location2.X=1854.05mil|Location1.Y=644.375mil|Location2.Y=655.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.8mil|Location2.X=1854.05mil|Location1.Y=644.375mil|Location2.Y=655.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (8.851mil &lt; 10mil) Between Pad C2-2(1884.409mil,647.103mil) on Top Layer And Via (1815mil,650mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [8.851mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.375mil|Location2.X=1890.625mil|Location1.Y=1175.051mil|Location2.Y=1186.301mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1879.375mil|Location2.X=1890.625mil|Location1.Y=1175.051mil|Location2.Y=1186.301mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.09mil &lt; 10mil) Between Pad C6-1(1883.189mil,1147.103mil) on Top Layer And Via (1885mil,1209.72mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.09mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=568.213mil|Location2.X=579.463mil|Location1.Y=227.918mil|Location2.Y=239.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=568.213mil|Location2.X=579.463mil|Location1.Y=227.918mil|Location2.Y=239.168mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (4.323mil &lt; 10mil) Between Pad D1-4-DIN(549.961mil,233.543mil) on Top Layer And Via (605mil,233.543mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [4.323mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2217.997mil|Location2.X=2229.247mil|Location1.Y=2124.375mil|Location2.Y=2135.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2217.997mil|Location2.X=2229.247mil|Location1.Y=2124.375mil|Location2.Y=2135.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.244mil &lt; 10mil) Between Pad D3-3-GND(2249.961mil,2126.457mil) on Top Layer And Via (2190mil,2130mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.244mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=517.997mil|Location2.X=529.247mil|Location1.Y=2124.375mil|Location2.Y=2135.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=517.997mil|Location2.X=529.247mil|Location1.Y=2124.375mil|Location2.Y=2135.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.244mil &lt; 10mil) Between Pad D4-3-GND(549.961mil,2126.457mil) on Top Layer And Via (490mil,2130mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.244mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=746.58mil|Location2.Y=757.83mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=746.58mil|Location2.Y=757.83mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.842mil &lt; 10mil) Between Pad J1-1(2155mil,739.409mil) on Top Layer And Pad J1-2(2155mil,765mil) on Top Layer [Top Solder] Mask Sliver [1.842mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.375mil|Location2.X=2160.625mil|Location1.Y=719.021mil|Location2.Y=730.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.375mil|Location2.X=2160.625mil|Location1.Y=719.021mil|Location2.Y=730.271mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 10mil) Between Pad J1-1(2155mil,739.409mil) on Top Layer And Pad J1-S1(2155mil,692.165mil) on Multi-Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=772.17mil|Location2.Y=783.42mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=772.17mil|Location2.Y=783.42mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad J1-2(2155mil,765mil) on Top Layer And Pad J1-3(2155mil,790.591mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=797.761mil|Location2.Y=809.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=797.761mil|Location2.Y=809.011mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.843mil &lt; 10mil) Between Pad J1-3(2155mil,790.591mil) on Top Layer And Pad J1-4(2155mil,816.181mil) on Top Layer [Top Solder] Mask Sliver [1.843mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=823.351mil|Location2.Y=834.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.8mil|Location2.X=2130.05mil|Location1.Y=823.351mil|Location2.Y=834.601mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.842mil &lt; 10mil) Between Pad J1-4(2155mil,816.181mil) on Top Layer And Pad J1-5(2155mil,841.772mil) on Top Layer [Top Solder] Mask Sliver [1.842mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2114.597mil|Location2.X=2125.847mil|Location1.Y=824.499mil|Location2.Y=835.749mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2114.597mil|Location2.X=2125.847mil|Location1.Y=824.499mil|Location2.Y=835.749mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.37mil &lt; 10mil) Between Pad J1-4(2155mil,816.181mil) on Top Layer And Via (2090mil,845mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.37mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.375mil|Location2.X=2160.625mil|Location1.Y=850.91mil|Location2.Y=862.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2149.375mil|Location2.X=2160.625mil|Location1.Y=850.91mil|Location2.Y=862.16mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.78mil &lt; 10mil) Between Pad J1-5(2155mil,841.772mil) on Top Layer And Pad J1-S2(2155mil,889.016mil) on Multi-Layer [Top Solder] Mask Sliver [5.78mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.088mil|Location2.X=2127.338mil|Location1.Y=839.375mil|Location2.Y=850.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.088mil|Location2.X=2127.338mil|Location1.Y=839.375mil|Location2.Y=850.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (5.425mil &lt; 10mil) Between Pad J1-5(2155mil,841.772mil) on Top Layer And Via (2090mil,845mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [5.425mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-1(1572.756mil,1127.5mil) on Top Layer And Pad U1-2(1572.756mil,1102.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=909.375mil|Location2.Y=920.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=909.375mil|Location2.Y=920.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-10(1572.756mil,902.5mil) on Top Layer And Pad U1-9(1572.756mil,927.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=909.375mil|Location2.Y=920.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=909.375mil|Location2.Y=920.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-11(1767.244mil,902.5mil) on Top Layer And Pad U1-12(1767.244mil,927.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=934.375mil|Location2.Y=945.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=934.375mil|Location2.Y=945.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-12(1767.244mil,927.5mil) on Top Layer And Pad U1-13(1767.244mil,952.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=959.375mil|Location2.Y=970.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=959.375mil|Location2.Y=970.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-13(1767.244mil,952.5mil) on Top Layer And Pad U1-14(1767.244mil,977.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=984.375mil|Location2.Y=995.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=984.375mil|Location2.Y=995.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-14(1767.244mil,977.5mil) on Top Layer And Pad U1-15(1767.244mil,1002.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1009.375mil|Location2.Y=1020.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1009.375mil|Location2.Y=1020.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-15(1767.244mil,1002.5mil) on Top Layer And Pad U1-16(1767.244mil,1027.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1034.375mil|Location2.Y=1045.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1034.375mil|Location2.Y=1045.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-16(1767.244mil,1027.5mil) on Top Layer And Pad U1-17(1767.244mil,1052.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1059.375mil|Location2.Y=1070.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1059.375mil|Location2.Y=1070.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-17(1767.244mil,1052.5mil) on Top Layer And Pad U1-18(1767.244mil,1077.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1084.375mil|Location2.Y=1095.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1084.375mil|Location2.Y=1095.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-18(1767.244mil,1077.5mil) on Top Layer And Pad U1-19(1767.244mil,1102.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.84mil|Location2.X=1730.09mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-19(1767.244mil,1102.5mil) on Top Layer And Pad U1-20(1767.244mil,1127.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1084.375mil|Location2.Y=1095.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1084.375mil|Location2.Y=1095.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-2(1572.756mil,1102.5mil) on Top Layer And Pad U1-3(1572.756mil,1077.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1059.375mil|Location2.Y=1070.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1059.375mil|Location2.Y=1070.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-3(1572.756mil,1077.5mil) on Top Layer And Pad U1-4(1572.756mil,1052.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1034.375mil|Location2.Y=1045.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1034.375mil|Location2.Y=1045.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-4(1572.756mil,1052.5mil) on Top Layer And Pad U1-5(1572.756mil,1027.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1009.375mil|Location2.Y=1020.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=1009.375mil|Location2.Y=1020.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-5(1572.756mil,1027.5mil) on Top Layer And Pad U1-6(1572.756mil,1002.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=984.375mil|Location2.Y=995.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=984.375mil|Location2.Y=995.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-6(1572.756mil,1002.5mil) on Top Layer And Pad U1-7(1572.756mil,977.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=959.375mil|Location2.Y=970.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=959.375mil|Location2.Y=970.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-7(1572.756mil,977.5mil) on Top Layer And Pad U1-8(1572.756mil,952.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=934.375mil|Location2.Y=945.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1524.351mil|Location2.X=1535.601mil|Location1.Y=934.375mil|Location2.Y=945.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.858mil &lt; 10mil) Between Pad U1-8(1572.756mil,952.5mil) on Top Layer And Pad U1-9(1572.756mil,927.5mil) on Top Layer [Top Solder] Mask Sliver [0.858mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.305mil|Location2.X=1606.555mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.305mil|Location2.X=1606.555mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-1(1610.773mil,1831.32mil) on Top Layer And Pad U3-2(1591.088mil,1831.32mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-1(1610.773mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-1(1610.773mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.305mil|Location2.X=1606.555mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1595.305mil|Location2.X=1606.555mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-10(1610.773mil,1736.68mil) on Top Layer And Pad U3-9(1591.088mil,1736.68mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-10(1610.773mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1607.648mil|Location2.X=1618.898mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-10(1610.773mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1575.62mil|Location2.X=1586.87mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1575.62mil|Location2.X=1586.87mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-2(1591.088mil,1831.32mil) on Top Layer And Pad U3-3(1571.403mil,1831.32mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1591.368mil|Location2.X=1602.618mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1591.368mil|Location2.X=1602.618mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-2(1591.088mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.152mil|Location2.X=1600.402mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.152mil|Location2.X=1600.402mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-2(1591.088mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1576.481mil|Location2.X=1587.731mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1576.481mil|Location2.X=1587.731mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.577mil &lt; 10mil) Between Pad U3-2(1591.088mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [9.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.935mil|Location2.X=1567.185mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.935mil|Location2.X=1567.185mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-3(1571.403mil,1831.32mil) on Top Layer And Pad U3-4(1551.718mil,1831.32mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.683mil|Location2.X=1582.933mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.683mil|Location2.X=1582.933mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-3(1571.403mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.683mil|Location2.X=1582.933mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1571.683mil|Location2.X=1582.933mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-3(1571.403mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1536.25mil|Location2.X=1547.5mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1536.25mil|Location2.X=1547.5mil|Location1.Y=1811.835mil|Location2.Y=1823.085mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-4(1551.718mil,1831.32mil) on Top Layer And Pad U3-5(1532.033mil,1831.32mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1551.998mil|Location2.X=1563.248mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1551.998mil|Location2.X=1563.248mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-4(1551.718mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1542.404mil|Location2.X=1553.654mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1542.404mil|Location2.X=1553.654mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-4(1551.718mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.075mil|Location2.X=1566.325mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.075mil|Location2.X=1566.325mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.577mil &lt; 10mil) Between Pad U3-4(1551.718mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [9.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-5(1532.033mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1808.166mil|Location2.Y=1819.416mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-5(1532.033mil,1831.32mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1536.25mil|Location2.X=1547.5mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1536.25mil|Location2.X=1547.5mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-6(1532.033mil,1736.68mil) on Top Layer And Pad U3-7(1551.718mil,1736.68mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-6(1532.033mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1523.908mil|Location2.X=1535.158mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-6(1532.033mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.935mil|Location2.X=1567.185mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.935mil|Location2.X=1567.185mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-7(1551.718mil,1736.68mil) on Top Layer And Pad U3-8(1571.403mil,1736.68mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1542.404mil|Location2.X=1553.654mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1542.404mil|Location2.X=1553.654mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-7(1551.718mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.188mil|Location2.X=1551.438mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1540.188mil|Location2.X=1551.438mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-7(1551.718mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.075mil|Location2.X=1566.325mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.075mil|Location2.X=1566.325mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.577mil &lt; 10mil) Between Pad U3-7(1551.718mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [9.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1575.62mil|Location2.X=1586.87mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1575.62mil|Location2.X=1586.87mil|Location1.Y=1717.195mil|Location2.Y=1728.445mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.875mil &lt; 10mil) Between Pad U3-8(1571.403mil,1736.68mil) on Top Layer And Pad U3-9(1591.088mil,1736.68mil) on Top Layer [Top Solder] Mask Sliver [7.875mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.873mil|Location2.X=1571.123mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1559.873mil|Location2.X=1571.123mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-8(1571.403mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1572.543mil|Location2.X=1583.793mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1572.543mil|Location2.X=1583.793mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.537mil &lt; 10mil) Between Pad U3-8(1571.403mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.537mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.558mil|Location2.X=1590.808mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1579.558mil|Location2.X=1590.808mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-9(1591.088mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.152mil|Location2.X=1600.402mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1589.152mil|Location2.X=1600.402mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (7.338mil &lt; 10mil) Between Pad U3-9(1591.088mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [7.338mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1576.481mil|Location2.X=1587.731mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1576.481mil|Location2.X=1587.731mil|Location1.Y=1748.584mil|Location2.Y=1759.834mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.577mil &lt; 10mil) Between Pad U3-9(1591.088mil,1736.68mil) on Top Layer And Region (0 hole(s)) Top Solder [Top Solder] Mask Sliver [9.577mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1247.17mil|Location2.X=1258.42mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1247.17mil|Location2.X=1258.42mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U4-1(1265.591mil,702.216mil) on Top Layer And Pad U4-2(1240mil,702.216mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.58mil|Location2.X=1232.83mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.58mil|Location2.X=1232.83mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U4-2(1240mil,702.216mil) on Top Layer And Pad U4-3(1214.409mil,702.216mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.58mil|Location2.X=1232.83mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.58mil|Location2.X=1232.83mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U4-4(1214.409mil,625.838mil) on Top Layer And Pad U4-5(1240mil,625.838mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1208.784mil|Location2.X=1220.034mil|Location1.Y=595.05mil|Location2.Y=606.3mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1208.784mil|Location2.X=1220.034mil|Location1.Y=595.05mil|Location2.Y=606.3mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.35mil &lt; 10mil) Between Pad U4-4(1214.409mil,625.838mil) on Top Layer And Via (1214.409mil,570mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3.35mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1247.17mil|Location2.X=1258.42mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1247.17mil|Location2.X=1258.42mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U4-5(1240mil,625.838mil) on Top Layer And Pad U4-6(1265.591mil,625.838mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.136mil|Location2.X=1232.386mil|Location1.Y=593.929mil|Location2.Y=605.179mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.136mil|Location2.X=1232.386mil|Location1.Y=593.929mil|Location2.Y=605.179mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.061mil &lt; 10mil) Between Pad U4-5(1240mil,625.838mil) on Top Layer And Via (1214.409mil,570mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.061mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.17mil|Location2.X=1428.42mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.17mil|Location2.X=1428.42mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U5-1(1435.591mil,702.216mil) on Top Layer And Pad U5-2(1410mil,702.216mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.211mil|Location2.X=1428.461mil|Location1.Y=721.562mil|Location2.Y=732.812mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.211mil|Location2.X=1428.461mil|Location1.Y=721.562mil|Location2.Y=732.812mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.265mil &lt; 10mil) Between Pad U5-1(1435.591mil,702.216mil) on Top Layer And Via (1410mil,755mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3.265mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.58mil|Location2.X=1402.83mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.58mil|Location2.X=1402.83mil|Location1.Y=673.103mil|Location2.Y=684.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U5-2(1410mil,702.216mil) on Top Layer And Pad U5-3(1384.409mil,702.216mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.375mil|Location2.X=1415.625mil|Location1.Y=720.227mil|Location2.Y=731.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1404.375mil|Location2.X=1415.625mil|Location1.Y=720.227mil|Location2.Y=731.477mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.296mil &lt; 10mil) Between Pad U5-2(1410mil,702.216mil) on Top Layer And Via (1410mil,755mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.296mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.539mil|Location2.X=1402.789mil|Location1.Y=721.562mil|Location2.Y=732.812mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.539mil|Location2.X=1402.789mil|Location1.Y=721.562mil|Location2.Y=732.812mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (3.265mil &lt; 10mil) Between Pad U5-3(1384.409mil,702.216mil) on Top Layer And Via (1410mil,755mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [3.265mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.58mil|Location2.X=1402.83mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1391.58mil|Location2.X=1402.83mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U5-4(1384.409mil,625.838mil) on Top Layer And Pad U5-5(1410mil,625.838mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.17mil|Location2.X=1428.42mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1417.17mil|Location2.X=1428.42mil|Location1.Y=596.725mil|Location2.Y=607.975mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (1.449mil &lt; 10mil) Between Pad U5-5(1410mil,625.838mil) on Top Layer And Pad U5-6(1435.591mil,625.838mil) on Top Layer [Top Solder] Mask Sliver [1.449mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.375mil|Location2.X=1470.625mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.375mil|Location2.X=1470.625mil|Location1.Y=1109.375mil|Location2.Y=1120.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (6.031mil &lt; 10mil) Between Via (1440mil,1095mil) from Top Layer to Bottom Layer And Via (1490mil,1135mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [6.031mil] / [Bottom Solder] Mask Sliver [6.031mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.875mil|Location2.X=1678.125mil|Location1.Y=927.78mil|Location2.Y=939.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.875mil|Location2.X=1678.125mil|Location1.Y=927.78mil|Location2.Y=939.03mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (9.955mil &lt; 10mil) Between Via (1660mil,965mil) from Top Layer to Bottom Layer And Via (1685mil,901.811mil) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [9.955mil] / [Bottom Solder] Mask Sliver [9.955mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDI1I3LSFPVGKCH424H452KWZHOCYG3ANGAD0UQ3DFM4TNZ2FJLJSI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=10mil) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=482.148mil|Location2.X=493.398mil|Location1.Y=552.557mil|Location2.Y=563.807mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=482.148mil|Location2.X=493.398mil|Location1.Y=552.557mil|Location2.Y=563.807mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C10-1(519.37mil,530mil) on Top Layer And Track (480mil,504.409mil)(480mil,555.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=466.501mil|Location2.X=477.751mil|Location1.Y=498.784mil|Location2.Y=510.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=466.501mil|Location2.X=477.751mil|Location1.Y=498.784mil|Location2.Y=510.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C10-2(440.63mil,530mil) on Top Layer And Track (480mil,504.409mil)(480mil,555.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.707mil|Location2.X=1935.957mil|Location1.Y=1071.274mil|Location2.Y=1082.524mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.707mil|Location2.X=1935.957mil|Location1.Y=1071.274mil|Location2.Y=1082.524mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C1-1(1961.929mil,1048.717mil) on Top Layer And Track (1922.559mil,1023.127mil)(1922.559mil,1074.308mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.148mil|Location2.X=2193.398mil|Location1.Y=537.557mil|Location2.Y=548.807mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.148mil|Location2.X=2193.398mil|Location1.Y=537.557mil|Location2.Y=548.807mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C11-1(2219.37mil,515mil) on Top Layer And Track (2180mil,489.409mil)(2180mil,540.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2166.501mil|Location2.X=2177.751mil|Location1.Y=483.784mil|Location2.Y=495.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2166.501mil|Location2.X=2177.751mil|Location1.Y=483.784mil|Location2.Y=495.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C11-2(2140.63mil,515mil) on Top Layer And Track (2180mil,489.409mil)(2180mil,540.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.06mil|Location2.X=1920.31mil|Location1.Y=1017.502mil|Location2.Y=1028.752mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.06mil|Location2.X=1920.31mil|Location1.Y=1017.502mil|Location2.Y=1028.752mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C1-2(1883.189mil,1048.717mil) on Top Layer And Track (1922.559mil,1023.127mil)(1922.559mil,1074.308mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2181.501mil|Location2.X=2192.751mil|Location1.Y=1813.784mil|Location2.Y=1825.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2181.501mil|Location2.X=2192.751mil|Location1.Y=1813.784mil|Location2.Y=1825.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C12-1(2155.63mil,1845mil) on Top Layer And Track (2195mil,1819.409mil)(2195mil,1870.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.09mil|Location2.X=2270.34mil|Location1.Y=1868.897mil|Location2.Y=1880.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.09mil|Location2.X=2270.34mil|Location1.Y=1868.897mil|Location2.Y=1880.147mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (5.571mil &lt; 10mil) Between Pad C12-2(2234.37mil,1845mil) on Top Layer And Text "C12" (2270mil,1865mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [5.571mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.148mil|Location2.X=2208.398mil|Location1.Y=1867.556mil|Location2.Y=1878.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2197.148mil|Location2.X=2208.398mil|Location1.Y=1867.556mil|Location2.Y=1878.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C12-2(2234.37mil,1845mil) on Top Layer And Track (2195mil,1819.409mil)(2195mil,1870.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.501mil|Location2.X=482.751mil|Location1.Y=1813.784mil|Location2.Y=1825.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=471.501mil|Location2.X=482.751mil|Location1.Y=1813.784mil|Location2.Y=1825.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C13-1(445.63mil,1845mil) on Top Layer And Track (485mil,1819.409mil)(485mil,1870.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=487.148mil|Location2.X=498.398mil|Location1.Y=1867.556mil|Location2.Y=1878.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=487.148mil|Location2.X=498.398mil|Location1.Y=1867.556mil|Location2.Y=1878.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C13-2(524.37mil,1845mil) on Top Layer And Track (485mil,1819.409mil)(485mil,1870.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=669.66mil|Location2.Y=680.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=669.66mil|Location2.Y=680.91mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C2-1(1963.15mil,647.103mil) on Top Layer And Track (1923.78mil,621.513mil)(1923.78mil,672.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=615.888mil|Location2.Y=627.138mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=615.888mil|Location2.Y=627.138mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C2-2(1884.409mil,647.103mil) on Top Layer And Track (1923.78mil,621.513mil)(1923.78mil,672.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=969.66mil|Location2.Y=980.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=969.66mil|Location2.Y=980.91mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C3-1(1963.15mil,947.103mil) on Top Layer And Track (1923.78mil,921.513mil)(1923.78mil,972.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=915.888mil|Location2.Y=927.138mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=915.888mil|Location2.Y=927.138mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C3-2(1884.409mil,947.103mil) on Top Layer And Track (1923.78mil,921.513mil)(1923.78mil,972.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2005.187mil|Location2.X=2016.437mil|Location1.Y=1676.446mil|Location2.Y=1687.696mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2005.187mil|Location2.X=2016.437mil|Location1.Y=1676.446mil|Location2.Y=1687.696mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C4-1(2036.403mil,1650.575mil) on Top Layer And Track (2010.812mil,1689.945mil)(2061.993mil,1689.945mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2058.959mil|Location2.X=2070.209mil|Location1.Y=1692.093mil|Location2.Y=1703.343mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2058.959mil|Location2.X=2070.209mil|Location1.Y=1692.093mil|Location2.Y=1703.343mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C4-2(2036.403mil,1729.315mil) on Top Layer And Track (2010.812mil,1689.945mil)(2061.993mil,1689.945mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.187mil|Location2.X=1901.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.187mil|Location2.X=1901.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C5-1(1921.403mil,1649.63mil) on Top Layer And Track (1895.812mil,1689mil)(1946.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.959mil|Location2.X=1955.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1943.959mil|Location2.X=1955.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C5-2(1921.403mil,1728.37mil) on Top Layer And Track (1895.812mil,1689mil)(1946.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.06mil|Location2.X=1920.31mil|Location1.Y=1115.888mil|Location2.Y=1127.138mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1909.06mil|Location2.X=1920.31mil|Location1.Y=1115.888mil|Location2.Y=1127.138mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C6-1(1883.189mil,1147.103mil) on Top Layer And Track (1922.559mil,1121.513mil)(1922.559mil,1172.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.707mil|Location2.X=1935.957mil|Location1.Y=1169.66mil|Location2.Y=1180.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1924.707mil|Location2.X=1935.957mil|Location1.Y=1169.66mil|Location2.Y=1180.91mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C6-2(1961.929mil,1147.103mil) on Top Layer And Track (1922.559mil,1121.513mil)(1922.559mil,1172.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.203mil|Location2.X=1842.453mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1831.203mil|Location2.X=1842.453mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C7-1(1808.647mil,1728.37mil) on Top Layer And Track (1783.056mil,1689mil)(1834.237mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.431mil|Location2.X=1788.681mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1777.431mil|Location2.X=1788.681mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C7-2(1808.647mil,1649.63mil) on Top Layer And Track (1783.056mil,1689mil)(1834.237mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1665.187mil|Location2.X=1676.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1665.187mil|Location2.X=1676.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C8-1(1696.403mil,1649.63mil) on Top Layer And Track (1670.812mil,1689mil)(1721.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.959mil|Location2.X=1730.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1718.959mil|Location2.X=1730.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C8-2(1696.403mil,1728.37mil) on Top Layer And Track (1670.812mil,1689mil)(1721.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1415.187mil|Location2.X=1426.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1415.187mil|Location2.X=1426.437mil|Location1.Y=1675.501mil|Location2.Y=1686.751mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad C9-1(1446.403mil,1649.63mil) on Top Layer And Track (1420.812mil,1689mil)(1471.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1468.959mil|Location2.X=1480.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1468.959mil|Location2.X=1480.209mil|Location1.Y=1691.148mil|Location2.Y=1702.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad C9-2(1446.403mil,1728.37mil) on Top Layer And Track (1420.812mil,1689mil)(1471.993mil,1689mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.946mil|Location2.X=552.613mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.946mil|Location2.X=552.613mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-1-VDD(549.961mil,426.457mil) on Top Layer And Track (386.575mil,428.425mil)(583.425mil,428.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=415.025mil|Location2.X=422.692mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=415.025mil|Location2.X=422.692mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-2-DOUT(420.039mil,426.457mil) on Top Layer And Track (386.575mil,428.425mil)(583.425mil,428.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-3-GND(420.039mil,233.543mil) on Top Layer And Track (386.575mil,231.575mil)(422.008mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-3-GND(420.039mil,233.543mil) on Top Layer And Track (386.575mil,267.008mil)(422.008mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=418.175mil|Location2.X=425.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-3-GND(420.039mil,233.543mil) on Top Layer And Track (422.008mil,231.575mil)(583.425mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=547.308mil|Location2.X=554.975mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=547.308mil|Location2.X=554.975mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D1-4-DIN(549.961mil,233.543mil) on Top Layer And Track (422.008mil,231.575mil)(583.425mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.946mil|Location2.X=2252.613mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.946mil|Location2.X=2252.613mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-1-VDD(2249.961mil,426.457mil) on Top Layer And Track (2086.575mil,428.425mil)(2283.425mil,428.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.025mil|Location2.X=2122.692mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.025mil|Location2.X=2122.692mil|Location1.Y=424.592mil|Location2.Y=432.259mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-2-DOUT(2120.039mil,426.457mil) on Top Layer And Track (2086.575mil,428.425mil)(2283.425mil,428.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-3-GND(2120.039mil,233.543mil) on Top Layer And Track (2086.575mil,231.575mil)(2122.008mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-3-GND(2120.039mil,233.543mil) on Top Layer And Track (2086.575mil,267.008mil)(2122.008mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2118.175mil|Location2.X=2125.841mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-3-GND(2120.039mil,233.543mil) on Top Layer And Track (2122.008mil,231.575mil)(2283.425mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2247.308mil|Location2.X=2254.975mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2247.308mil|Location2.X=2254.975mil|Location1.Y=227.742mil|Location2.Y=235.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D2-4-DIN(2249.961mil,233.543mil) on Top Layer And Track (2122.008mil,231.575mil)(2283.425mil,231.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2117.387mil|Location2.X=2125.054mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2117.387mil|Location2.X=2125.054mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-1-VDD(2120.039mil,1933.543mil) on Top Layer And Track (2086.575mil,1931.575mil)(2283.425mil,1931.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2247.308mil|Location2.X=2254.975mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2247.308mil|Location2.X=2254.975mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-2-DOUT(2249.961mil,1933.543mil) on Top Layer And Track (2086.575mil,1931.575mil)(2283.425mil,1931.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.302mil|Location2.X=2253.969mil|Location1.Y=2125.878mil|Location2.Y=2133.545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.302mil|Location2.X=2253.969mil|Location1.Y=2125.878mil|Location2.Y=2133.545mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-3-GND(2249.961mil,2126.457mil) on Top Layer And Track (2086.575mil,2128.425mil)(2247.992mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.127mil|Location2.X=2253.794mil|Location1.Y=2122.623mil|Location2.Y=2130.29mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2246.127mil|Location2.X=2253.794mil|Location1.Y=2122.623mil|Location2.Y=2130.29mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-3-GND(2249.961mil,2126.457mil) on Top Layer And Track (2247.992mil,2128.425mil)(2283.425mil,2092.992mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.946mil|Location2.X=2252.613mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2244.946mil|Location2.X=2252.613mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-3-GND(2249.961mil,2126.457mil) on Top Layer And Track (2247.992mil,2128.425mil)(2283.425mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.025mil|Location2.X=2122.692mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2115.025mil|Location2.X=2122.692mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D3-4-DIN(2120.039mil,2126.457mil) on Top Layer And Track (2086.575mil,2128.425mil)(2247.992mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=417.387mil|Location2.X=425.054mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=417.387mil|Location2.X=425.054mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-1-VDD(420.039mil,1933.543mil) on Top Layer And Track (386.575mil,1931.575mil)(583.425mil,1931.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=547.308mil|Location2.X=554.975mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=547.308mil|Location2.X=554.975mil|Location1.Y=1927.742mil|Location2.Y=1935.408mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-2-DOUT(549.961mil,1933.543mil) on Top Layer And Track (386.575mil,1931.575mil)(583.425mil,1931.575mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.303mil|Location2.X=553.969mil|Location1.Y=2125.878mil|Location2.Y=2133.545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.303mil|Location2.X=553.969mil|Location1.Y=2125.878mil|Location2.Y=2133.545mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-3-GND(549.961mil,2126.457mil) on Top Layer And Track (386.575mil,2128.425mil)(547.992mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.127mil|Location2.X=553.794mil|Location1.Y=2122.623mil|Location2.Y=2130.29mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=546.127mil|Location2.X=553.794mil|Location1.Y=2122.623mil|Location2.Y=2130.29mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-3-GND(549.961mil,2126.457mil) on Top Layer And Track (547.992mil,2128.425mil)(583.425mil,2092.992mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.946mil|Location2.X=552.613mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=544.946mil|Location2.X=552.613mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-3-GND(549.961mil,2126.457mil) on Top Layer And Track (547.992mil,2128.425mil)(583.425mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=415.025mil|Location2.X=422.692mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=415.025mil|Location2.X=422.692mil|Location1.Y=2124.592mil|Location2.Y=2132.258mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 10mil) Between Pad D4-4-DIN(420.039mil,2126.457mil) on Top Layer And Track (386.575mil,2128.425mil)(547.992mil,2128.425mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=769.66mil|Location2.Y=780.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=769.66mil|Location2.Y=780.91mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad R1-1(1963.15mil,747.103mil) on Top Layer And Track (1923.78mil,721.513mil)(1923.78mil,772.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=715.888mil|Location2.Y=727.138mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=715.888mil|Location2.Y=727.138mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R1-2(1884.409mil,747.103mil) on Top Layer And Track (1923.78mil,721.513mil)(1923.78mil,772.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=869.66mil|Location2.Y=880.91mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.928mil|Location2.X=1937.178mil|Location1.Y=869.66mil|Location2.Y=880.91mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad R2-1(1963.15mil,847.103mil) on Top Layer And Track (1923.78mil,821.513mil)(1923.78mil,872.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=815.888mil|Location2.Y=827.138mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1910.281mil|Location2.X=1921.531mil|Location1.Y=815.888mil|Location2.Y=827.138mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R2-2(1884.409mil,847.103mil) on Top Layer And Track (1923.78mil,821.513mil)(1923.78mil,872.694mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1011.501mil|Location2.X=1022.751mil|Location1.Y=1578.784mil|Location2.Y=1590.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1011.501mil|Location2.X=1022.751mil|Location1.Y=1578.784mil|Location2.Y=1590.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R7-1(985.63mil,1610mil) on Top Layer And Track (1025mil,1584.409mil)(1025mil,1635.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.148mil|Location2.X=1038.398mil|Location1.Y=1632.556mil|Location2.Y=1643.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.148mil|Location2.X=1038.398mil|Location1.Y=1632.556mil|Location2.Y=1643.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad R7-2(1064.37mil,1610mil) on Top Layer And Track (1025mil,1584.409mil)(1025mil,1635.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1251.501mil|Location2.X=1262.751mil|Location1.Y=1848.784mil|Location2.Y=1860.034mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1251.501mil|Location2.X=1262.751mil|Location1.Y=1848.784mil|Location2.Y=1860.034mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R8-1(1225.63mil,1880mil) on Top Layer And Track (1265mil,1854.409mil)(1265mil,1905.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1267.148mil|Location2.X=1278.398mil|Location1.Y=1902.556mil|Location2.Y=1913.806mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1267.148mil|Location2.X=1278.398mil|Location1.Y=1902.556mil|Location2.Y=1913.806mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad R8-2(1304.37mil,1880mil) on Top Layer And Track (1265mil,1854.409mil)(1265mil,1905.591mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=598.784mil|Location2.X=610.034mil|Location1.Y=696.501mil|Location2.Y=707.751mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=598.784mil|Location2.X=610.034mil|Location1.Y=696.501mil|Location2.Y=707.751mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad R9-1(630mil,670.63mil) on Top Layer And Track (604.409mil,710mil)(655.591mil,710mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.557mil|Location2.X=663.807mil|Location1.Y=712.148mil|Location2.Y=723.398mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.557mil|Location2.X=663.807mil|Location1.Y=712.148mil|Location2.Y=723.398mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.513mil &lt; 10mil) Between Pad R9-2(630mil,749.37mil) on Top Layer And Track (604.409mil,710mil)(655.591mil,710mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.513mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1586.028mil|Location2.X=1597.278mil|Location1.Y=1132.19mil|Location2.Y=1143.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1586.028mil|Location2.X=1597.278mil|Location1.Y=1132.19mil|Location2.Y=1143.44mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.488mil &lt; 10mil) Between Pad U1-1(1572.756mil,1127.5mil) on Top Layer And Track (1591.653mil,1142.559mil)(1591.653mil,1187.047mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.488mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1587.393mil|Location2.X=1598.643mil|Location1.Y=888.372mil|Location2.Y=899.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1587.393mil|Location2.X=1598.643mil|Location1.Y=888.372mil|Location2.Y=899.622mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (8.393mil &lt; 10mil) Between Pad U1-10(1572.756mil,902.5mil) on Top Layer And Track (1591.653mil,842.953mil)(1591.653mil,887.441mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [8.393mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.722mil|Location2.X=1753.972mil|Location1.Y=886.56mil|Location2.Y=897.81mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.722mil|Location2.X=1753.972mil|Location1.Y=886.56mil|Location2.Y=897.81mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.488mil &lt; 10mil) Between Pad U1-11(1767.244mil,902.5mil) on Top Layer And Track (1748.347mil,842.953mil)(1748.347mil,887.441mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.488mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.722mil|Location2.X=1753.972mil|Location1.Y=1132.19mil|Location2.Y=1143.44mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1742.722mil|Location2.X=1753.972mil|Location1.Y=1132.19mil|Location2.Y=1143.44mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (4.488mil &lt; 10mil) Between Pad U1-20(1767.244mil,1127.5mil) on Top Layer And Track (1748.347mil,1142.559mil)(1748.347mil,1187.047mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [4.488mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1272.967mil|Location2.X=1284.217mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1272.967mil|Location2.X=1284.217mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U4-1(1265.591mil,702.216mil) on Top Layer And Track (1286.024mil,637.255mil)(1286.024mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.783mil|Location2.X=1207.033mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.783mil|Location2.X=1207.033mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U4-3(1214.409mil,702.216mil) on Top Layer And Track (1193.976mil,637.255mil)(1193.976mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.783mil|Location2.X=1207.033mil|Location1.Y=639.701mil|Location2.Y=650.951mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1195.783mil|Location2.X=1207.033mil|Location1.Y=639.701mil|Location2.Y=650.951mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U4-4(1214.409mil,625.838mil) on Top Layer And Track (1193.976mil,637.255mil)(1193.976mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1272.967mil|Location2.X=1284.217mil|Location1.Y=631.63mil|Location2.Y=642.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1272.967mil|Location2.X=1284.217mil|Location1.Y=631.63mil|Location2.Y=642.88mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U4-6(1265.591mil,625.838mil) on Top Layer And Track (1286.024mil,637.255mil)(1286.024mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.967mil|Location2.X=1454.217mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.967mil|Location2.X=1454.217mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U5-1(1435.591mil,702.216mil) on Top Layer And Track (1456.024mil,637.255mil)(1456.024mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.783mil|Location2.X=1377.033mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.783mil|Location2.X=1377.033mil|Location1.Y=677.103mil|Location2.Y=688.353mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U5-3(1384.409mil,702.216mil) on Top Layer And Track (1363.976mil,637.255mil)(1363.976mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.783mil|Location2.X=1377.033mil|Location1.Y=639.701mil|Location2.Y=650.951mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1365.783mil|Location2.X=1377.033mil|Location1.Y=639.701mil|Location2.Y=650.951mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U5-4(1384.409mil,625.838mil) on Top Layer And Track (1363.976mil,637.255mil)(1363.976mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.967mil|Location2.X=1454.217mil|Location1.Y=631.63mil|Location2.Y=642.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1442.967mil|Location2.X=1454.217mil|Location1.Y=631.63mil|Location2.Y=642.88mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (9.862mil &lt; 10mil) Between Pad U5-6(1435.591mil,625.838mil) on Top Layer And Track (1456.024mil,637.255mil)(1456.024mil,690.799mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [9.862mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1455.241mil|Location2.Y=1466.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1455.241mil|Location2.Y=1466.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad VR1-1(1620.827mil,1480.551mil) on Top Layer And Track (1679.882mil,1258.11mil)(1679.882mil,1521.89mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1364.69mil|Location2.Y=1375.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1364.69mil|Location2.Y=1375.94mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad VR1-2(1620.827mil,1390mil) on Top Layer And Track (1679.882mil,1258.11mil)(1679.882mil,1521.89mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1274.139mil|Location2.Y=1285.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1666.383mil|Location2.X=1677.633mil|Location1.Y=1274.139mil|Location2.Y=1285.389mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad VR1-3(1620.827mil,1299.449mil) on Top Layer And Track (1679.882mil,1258.11mil)(1679.882mil,1521.89mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.367mil|Location2.X=1803.617mil|Location1.Y=1449.336mil|Location2.Y=1460.586mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1792.367mil|Location2.X=1803.617mil|Location1.Y=1449.336mil|Location2.Y=1460.586mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (7.874mil &lt; 10mil) Between Pad VR1-4(1849.173mil,1390mil) on Top Layer And Track (1790.118mil,1258.11mil)(1790.118mil,1521.89mil) on Top Overlay [Top Overlay] to [Top Solder] clearance [7.874mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDECO2KZKWE1QNLGFXWAX5J0I5VCVDRXOYGYCHHYIETX4WAUDKEKIJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=10mil) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.125mil|Location2.X=2189.791mil|Location1.Y=1487.857mil|Location2.Y=1495.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2182.125mil|Location2.X=2189.791mil|Location1.Y=1487.857mil|Location2.Y=1495.523mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 10mil) Between Arc (2190.45mil,1493.701mil) on Top Overlay And Text "GND" (2145mil,1422.677mil) on Top Overlay Silk Text to Silk Clearance [0mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=583.588mil|Location2.X=594.838mil|Location1.Y=314.375mil|Location2.Y=325.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=583.588mil|Location2.X=594.838mil|Location1.Y=314.375mil|Location2.Y=325.625mil|Absolute=True">Silk To Silk Clearance Constraint: (6.575mil &lt; 10mil) Between Text "D1" (595mil,320mil) on Top Overlay And Track (583.425mil,231.575mil)(583.425mil,428.425mil) on Top Overlay Silk Text to Silk Clearance [6.575mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2074.622mil|Location2.X=2085.872mil|Location1.Y=2018.897mil|Location2.Y=2030.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2074.622mil|Location2.X=2085.872mil|Location1.Y=2018.897mil|Location2.Y=2030.147mil|Absolute=True">Silk To Silk Clearance Constraint: (7.655mil &lt; 10mil) Between Text "D3" (2035mil,2015mil) on Top Overlay And Track (2086.575mil,1931.575mil)(2086.575mil,2128.425mil) on Top Overlay Silk Text to Silk Clearance [7.655mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.102mil|Location2.X=663.352mil|Location1.Y=1797.055mil|Location2.Y=1808.305mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=652.102mil|Location2.X=663.352mil|Location1.Y=1797.055mil|Location2.Y=1808.305mil|Absolute=True">Silk To Silk Clearance Constraint: (9.374mil &lt; 10mil) Between Text "P3" (660mil,1809.498mil) on Top Overlay And Track (655mil,1694.498mil)(655mil,1794.498mil) on Top Overlay Silk Text to Silk Clearance [9.374mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=654.375mil|Location2.X=665.625mil|Location1.Y=1797.092mil|Location2.Y=1808.342mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=654.375mil|Location2.X=665.625mil|Location1.Y=1797.092mil|Location2.Y=1808.342mil|Absolute=True">Silk To Silk Clearance Constraint: (8.563mil &lt; 10mil) Between Text "P3" (660mil,1809.498mil) on Top Overlay And Track (655mil,1794.498mil)(1355mil,1794.498mil) on Top Overlay Silk Text to Silk Clearance [8.563mil]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.478mil|Location2.X=1362.728mil|Location1.Y=657.924mil|Location2.Y=669.174mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\jdiro\Desktop\Altium\ESP-LED-Board\ESP-LED-5x5PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1351.478mil|Location2.X=1362.728mil|Location1.Y=657.924mil|Location2.Y=669.174mil|Absolute=True">Silk To Silk Clearance Constraint: (8.747mil &lt; 10mil) Between Text "U5" (1310mil,654.027mil) on Top Overlay And Track (1363.976mil,637.255mil)(1363.976mil,690.799mil) on Top Overlay Silk Text to Silk Clearance [8.747mil]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

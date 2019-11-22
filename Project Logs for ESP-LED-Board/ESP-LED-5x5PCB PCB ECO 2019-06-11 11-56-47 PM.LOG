@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=3V3 Pin=VR1-2
+Removed Pin From Net: NetName=GND Pin=VR1-3
+Change Component Footprint: Designator=VR1 Old Footprint=SOT23_L New Footprint=SOT223_N
+Added Pin To Net: NetName=GND Pin=VR1-2
+Added Pin To Net: NetName=3V3 Pin=VR1-3

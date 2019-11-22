@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=GND Pin=U1-7
+Removed Pin From Net: NetName=GND Pin=U1-14
+Removed Pin From Net: NetName=GND Pin=U1-15
+Removed Pin From Net: NetName=GND Pin=U1-16
+Added Member To Class: ClassName=ESP-LED-Schematic Member=Component U1 INTERFACE-FT230XS-R(SSOP16)

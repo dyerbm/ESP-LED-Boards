@@ -1,0 +1,28 @@
+PCAD Importer Log
+Project : FT231XS-R.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\FT231XS-R.lia
+    Section : PCB Library - FT231XS-R.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token FT231XS-R On Line 149
+            Warning - 1 : Skipping Token attachedSymbol On Line 376
+        EndSection
+
+        Section : Import Messages
+        EndSection
+    EndSection
+
+    Section : SCH Library - FT231XS-R.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token multiLayer On Line 84
+            Warning - 1 : Skipping Token layerContents On Line 106
+            Warning - 1 : Skipping Token layerContents On Line 120
+            Warning - 1 : Skipping Token layerContents On Line 129
+            Warning - 1 : Skipping Token layerContents On Line 138
+        EndSection
+
+        Section : Generating SCH Library - FT231XS-R.SchLib
+        EndSection
+    EndSection
+EndSection

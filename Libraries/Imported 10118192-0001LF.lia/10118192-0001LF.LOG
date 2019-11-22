@@ -1,0 +1,35 @@
+PCAD Importer Log
+Project : 10118192-0001LF.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\10118192-0001LF.lia
+    Section : PCB Library - 10118192-0001LF.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token isVisible On Line 158
+            Warning - 1 : Skipping Token isVisible On Line 172
+            Warning - 1 : Skipping Token 10118192-0001LF On Line 179
+            Warning - 1 : Skipping Token attachedSymbol On Line 316
+        EndSection
+
+        Section : Import Messages
+            Warning - 0 : PCAD Pattern Graphics [*AMPHENOL_10118192-0001LF][Primary] associated with PCAD Component [10118192-0001LF] has been renamed to PCB FootPrint [*AMPHENOL_10118192-0001LF_10118192-0001LF(Primary)].
+        EndSection
+    EndSection
+
+    Section : SCH Library - 10118192-0001LF.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token padStyleDef On Line 21
+            Warning - 1 : Skipping Token padStyleDef On Line 33
+            Warning - 1 : Skipping Token padStyleDef On Line 45
+            Warning - 1 : Skipping Token multiLayer On Line 120
+            Warning - 1 : Skipping Token layerContents On Line 133
+            Warning - 1 : Skipping Token layerContents On Line 143
+            Warning - 1 : Skipping Token layerContents On Line 149
+            Warning - 1 : Skipping Token layerContents On Line 163
+        EndSection
+
+        Section : Generating SCH Library - 10118192-0001LF.SchLib
+            Warning - 0 : PCAD Pattern Graphics [*AMPHENOL_10118192-0001LF][Primary] associated with PCAD Component [10118192-0001LF] has been renamed to PCB FootPrint [*AMPHENOL_10118192-0001LF_10118192-0001LF(Primary)].
+        EndSection
+    EndSection
+EndSection

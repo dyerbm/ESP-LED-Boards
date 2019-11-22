@@ -1,0 +1,39 @@
+PCAD Importer Log
+Project : 10118194-0001LF.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\10118194-0001LF.lia
+    Section : PCB Library - 10118194-0001LF.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token isVisible On Line 703
+            Warning - 1 : Skipping Token isVisible On Line 718
+            Warning - 1 : Skipping Token 10118194-0001LF On Line 1157
+            Warning - 1 : Skipping Token attachedSymbol On Line 1294
+        EndSection
+
+        Section : Import Messages
+            Warning - 0 : PCAD Pattern Graphics [*AMPHENOL_10118194-0001LF][Primary] associated with PCAD Component [10118194-0001LF] has been renamed to PCB FootPrint [*AMPHENOL_10118194-0001LF_10118194-0001LF(Primary)].
+        EndSection
+    EndSection
+
+    Section : SCH Library - 10118194-0001LF.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token padStyleDef On Line 21
+            Warning - 1 : Skipping Token padStyleDef On Line 33
+            Warning - 1 : Skipping Token padStyleDef On Line 45
+            Warning - 1 : Skipping Token multiLayer On Line 120
+            Warning - 1 : Skipping Token layerContents On Line 133
+            Warning - 1 : Skipping Token layerContents On Line 141
+            Warning - 1 : Skipping Token layerContents On Line 281
+            Warning - 1 : Skipping Token layerContents On Line 689
+            Warning - 1 : Skipping Token layerContents On Line 699
+            Warning - 1 : Skipping Token layerContents On Line 714
+            Warning - 1 : Skipping Token layerContents On Line 729
+            Warning - 1 : Skipping Token layerContents On Line 747
+        EndSection
+
+        Section : Generating SCH Library - 10118194-0001LF.SchLib
+            Warning - 0 : PCAD Pattern Graphics [*AMPHENOL_10118194-0001LF][Primary] associated with PCAD Component [10118194-0001LF] has been renamed to PCB FootPrint [*AMPHENOL_10118194-0001LF_10118194-0001LF(Primary)].
+        EndSection
+    EndSection
+EndSection

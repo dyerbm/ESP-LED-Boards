@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=3V3 Pin=D5-5
+Removed Pin From Net: NetName=3V3 Pin=R7-1
+Removed Member From Class: ClassName=ESP-LED-Schematic Member=D5
+Removed Member From Class: ClassName=ESP-LED-Schematic Member=R7

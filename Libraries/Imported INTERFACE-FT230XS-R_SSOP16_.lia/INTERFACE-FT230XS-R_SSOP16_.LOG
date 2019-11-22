@@ -1,0 +1,28 @@
+PCAD Importer Log
+Project : INTERFACE-FT230XS-R_SSOP16_.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\INTERFACE-FT230XS-R_SSOP16_.lia
+    Section : PCB Library - INTERFACE-FT230XS-R_SSOP16_.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token INTERFACE-FT230XS On Line 125
+            Warning - 1 : Skipping Token attachedSymbol On Line 344
+        EndSection
+
+        Section : Import Messages
+        EndSection
+    EndSection
+
+    Section : SCH Library - INTERFACE-FT230XS-R_SSOP16_.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token multiLayer On Line 84
+            Warning - 1 : Skipping Token layerContents On Line 102
+            Warning - 1 : Skipping Token layerContents On Line 106
+            Warning - 1 : Skipping Token layerContents On Line 110
+            Warning - 1 : Skipping Token layerContents On Line 115
+        EndSection
+
+        Section : Generating SCH Library - INTERFACE-FT230XS-R_SSOP16_.SchLib
+        EndSection
+    EndSection
+EndSection

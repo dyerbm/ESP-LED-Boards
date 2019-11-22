@@ -1,0 +1,6 @@
+Removed Pin From Net: NetName=VIN Pin=VR1-1
+Removed Pin From Net: NetName=GND Pin=VR1-2
+Removed Pin From Net: NetName=3V3 Pin=VR1-3
+Added Pin To Net: NetName=3V3 Pin=VR1-1
+Added Pin To Net: NetName=VIN Pin=VR1-2
+Added Pin To Net: NetName=GND Pin=VR1-3

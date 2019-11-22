@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [ESP-LED-Board.PrjPCB]
+   Generated File[ESP-LED-5x5PCB.TXT]
+   Generated File[ESP-LED-5x5PCB.LDP]
+   Generated File[ESP-LED-5x5PCB.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 11:37:53 PM On 2019-07-09

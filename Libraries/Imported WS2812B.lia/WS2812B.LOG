@@ -1,0 +1,40 @@
+PCAD Importer Log
+Project : WS2812B.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\WS2812B.lia
+    Section : PCB Library - WS2812B.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token WS2812BLED On Line 212
+            Warning - 1 : Skipping Token attachedSymbol On Line 312
+        EndSection
+
+        Section : Import Messages
+            Warning - 0 : PCAD Pattern Graphics [*WS2812B][Primary] associated with PCAD Component [WS2812B] has been renamed to PCB FootPrint [*WS2812B_WS2812B(Primary)].
+        EndSection
+    EndSection
+
+    Section : SCH Library - WS2812B.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token padStyleDef On Line 21
+            Warning - 1 : Skipping Token padStyleDef On Line 33
+            Warning - 1 : Skipping Token multiLayer On Line 108
+            Warning - 1 : Skipping Token layerContents On Line 114
+            Warning - 1 : Skipping Token layerContents On Line 117
+            Warning - 1 : Skipping Token layerContents On Line 120
+            Warning - 1 : Skipping Token multiLayer On Line 140
+            Warning - 1 : Skipping Token layerContents On Line 146
+            Warning - 1 : Skipping Token layerContents On Line 149
+            Warning - 1 : Skipping Token layerContents On Line 152
+            Warning - 1 : Skipping Token multiLayer On Line 172
+            Warning - 1 : Skipping Token layerContents On Line 178
+            Warning - 1 : Skipping Token layerContents On Line 187
+            Warning - 1 : Skipping Token layerContents On Line 196
+            Warning - 1 : Skipping Token isVisible On Line 278
+        EndSection
+
+        Section : Generating SCH Library - WS2812B.SchLib
+            Warning - 0 : PCAD Pattern Graphics [*WS2812B][Primary] associated with PCAD Component [WS2812B] has been renamed to PCB FootPrint [*WS2812B_WS2812B(Primary)].
+        EndSection
+    EndSection
+EndSection

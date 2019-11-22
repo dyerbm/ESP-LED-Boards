@@ -1,0 +1,34 @@
+Removed Pin From Net: NetName=NetC1_2 Pin=U1-1
+Removed Pin From Net: NetName=NetP3_2 Pin=U1-2
+Removed Pin From Net: NetName=GND Pin=U1-3
+Removed Pin From Net: NetName=NetR1_2 Pin=U1-6
+Removed Pin From Net: NetName=NetR2_2 Pin=U1-7
+Removed Pin From Net: NetName=NetC1_2 Pin=U1-8
+Removed Pin From Net: NetName=NetC1_2 Pin=U1-9
+Removed Pin From Net: NetName=VIN Pin=U1-10
+Removed Pin From Net: NetName=NetP3_1 Pin=U1-15
+Removed Pin From Net: NetName=GND Pin=U1-17
+Change Component Footprint: Designator=U1 Old Footprint=*QFN16 New Footprint=*SSOP16-0.635-5X4MM
+Change Component Comment : Designator=U1 Old Comment=FT230XQ-R New Comment=INTERFACE-FT230XS-R(SSOP16)
+Change component parameters: Designator = "U1"; Footprint = "*SSOP16-0.635-5X4MM"; UniqueID = "\TRGSTIKQ"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "FTDI,"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "FT230XS-R"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "SSOP-16 FTDI"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/FT230XS-R/FTDI%2C%20Future%20Technology%20Devices%20International%20Ltd/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetP3_1 Pin=U1-1
+Added Pin To Net: NetName=NetC1_2 Pin=U1-3
+Added Pin To Net: NetName=NetP3_2 Pin=U1-4
+Added Pin To Net: NetName=GND Pin=U1-5
+Added Pin To Net: NetName=GND Pin=U1-7
+Added Pin To Net: NetName=NetR1_2 Pin=U1-8
+Added Pin To Net: NetName=NetR2_2 Pin=U1-9
+Added Pin To Net: NetName=NetC1_2 Pin=U1-10
+Added Pin To Net: NetName=NetC1_2 Pin=U1-11
+Added Pin To Net: NetName=VIN Pin=U1-12
+Added Pin To Net: NetName=GND Pin=U1-14
+Added Pin To Net: NetName=GND Pin=U1-15
+Added Pin To Net: NetName=GND Pin=U1-16

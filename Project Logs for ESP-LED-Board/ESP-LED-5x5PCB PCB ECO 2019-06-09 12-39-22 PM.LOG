@@ -1,0 +1,98 @@
+Removed Pin From Net: NetName=LED1 Pin=D1-2
+Removed Pin From Net: NetName=3V3 Pin=D1-5
+Removed Pin From Net: NetName=GND Pin=D1-6
+Removed Pin From Net: NetName=3V3 Pin=D2-5
+Removed Pin From Net: NetName=GND Pin=D2-6
+Removed Pin From Net: NetName=3V3 Pin=D3-5
+Removed Pin From Net: NetName=GND Pin=D3-6
+Removed Pin From Net: NetName=3V3 Pin=D4-5
+Removed Pin From Net: NetName=GND Pin=D4-6
+Removed Pin From Net: NetName=LED1 Pin=U2-7
+Change Component Footprint: Designator=D1 Old Footprint=WS2812 New Footprint=*WS2812B_WS2812B(Primary)
+Change Component Footprint: Designator=D2 Old Footprint=WS2812 New Footprint=*WS2812B_WS2812B(Primary)
+Change Component Footprint: Designator=D3 Old Footprint=WS2812 New Footprint=*WS2812B_WS2812B(Primary)
+Change Component Footprint: Designator=D4 Old Footprint=WS2812 New Footprint=*WS2812B_WS2812B(Primary)
+Change Component Comment : Designator=D1 Old Comment=WS2812 New Comment=WS2812B
+Change Component Comment : Designator=D2 Old Comment=WS2812 New Comment=WS2812B
+Change Component Comment : Designator=D3 Old Comment=WS2812 New Comment=WS2812B
+Change Component Comment : Designator=D4 Old Comment=WS2812 New Comment=WS2812B
+Change component parameters: Designator = "D1"; Footprint = "*WS2812B_WS2812B(Primary)"; UniqueID = "\PKLTAHCP"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Digi-Key_Part_Number"; Value = "1597-1565-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.ca/product-detail/en/seeed-technology-co-ltd/110060865/1597-1565-ND/7650479?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Worldsemi"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "WS2812B"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/WS2812B/Seeed%20Technology%20Co.%2C%20Ltd/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2"; Footprint = "*WS2812B_WS2812B(Primary)"; UniqueID = "\ASYDWOIY"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Digi-Key_Part_Number"; Value = "1597-1565-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.ca/product-detail/en/seeed-technology-co-ltd/110060865/1597-1565-ND/7650479?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Worldsemi"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "WS2812B"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/WS2812B/Seeed%20Technology%20Co.%2C%20Ltd/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "D3"; Footprint = "*WS2812B_WS2812B(Primary)"; UniqueID = "\AMQKUUEO"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Digi-Key_Part_Number"; Value = "1597-1565-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.ca/product-detail/en/seeed-technology-co-ltd/110060865/1597-1565-ND/7650479?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Worldsemi"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "WS2812B"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/WS2812B/Seeed%20Technology%20Co.%2C%20Ltd/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Change component parameters: Designator = "D4"; Footprint = "*WS2812B_WS2812B(Primary)"; UniqueID = "\YNGWRAJP"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Digi-Key_Part_Number"; Value = "1597-1565-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digi-Key_Purchase_URL"; Value = "https://www.digikey.ca/product-detail/en/seeed-technology-co-ltd/110060865/1597-1565-ND/7650479?utm_source=snapeda&utm_medium=aggregator&utm_campaign=symbol"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = "Worldsemi"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "WS2812B"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/WS2812B/Seeed%20Technology%20Co.%2C%20Ltd/view-part/?ref=snap"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Component: Designator=U5(*SOT65P210X110-6N)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Nexperia USA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "74LVC1T45GW,125"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "SOT-363 Nexperia USA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/74LVC1T45GW%2C125/Nexperia%20USA%20Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=D1-3-GND
+Added Pin To Net: NetName=LED1 Pin=D1-4-DIN
+Added Pin To Net: NetName=GND Pin=D2-3-GND
+Added Pin To Net: NetName=GND Pin=D3-3-GND
+Added Pin To Net: NetName=GND Pin=D4-3-GND
+Added Pin To Net: NetName=3V3 Pin=U5-1
+Added Pin To Net: NetName=GND Pin=U5-2
+Added Pin To Net: NetName=LED1 Pin=U5-4
+Added Pin To Net: NetName=GND Pin=U5-5
+Added Pin To Net: NetName=VIN Pin=U5-6
+Added Pin To Net: NetName=NetD1_1-VDD Pin=D1-1-VDD
+Added Pin To Net: NetName=NetD1_1-VDD Pin=R3-2
+Added Net: Name=NetD1_1-VDD
+Added Pin To Net: NetName=NetD1_2-DOUT Pin=D1-2-DOUT
+Added Pin To Net: NetName=NetD1_2-DOUT Pin=D2-4-DIN
+Added Net: Name=NetD1_2-DOUT
+Added Pin To Net: NetName=NetD2_1-VDD Pin=D2-1-VDD
+Added Pin To Net: NetName=NetD2_1-VDD Pin=R4-2
+Added Net: Name=NetD2_1-VDD
+Added Pin To Net: NetName=NetD2_2-DOUT Pin=D2-2-DOUT
+Added Pin To Net: NetName=NetD2_2-DOUT Pin=D3-4-DIN
+Added Net: Name=NetD2_2-DOUT
+Added Pin To Net: NetName=NetD3_1-VDD Pin=D3-1-VDD
+Added Pin To Net: NetName=NetD3_1-VDD Pin=R5-2
+Added Net: Name=NetD3_1-VDD
+Added Pin To Net: NetName=NetD3_2-DOUT Pin=D3-2-DOUT
+Added Pin To Net: NetName=NetD3_2-DOUT Pin=D4-4-DIN
+Added Net: Name=NetD3_2-DOUT
+Added Pin To Net: NetName=NetD4_1-VDD Pin=D4-1-VDD
+Added Pin To Net: NetName=NetD4_1-VDD Pin=R6-2
+Added Net: Name=NetD4_1-VDD
+Added Pin To Net: NetName=NetU2_7 Pin=U2-7
+Added Pin To Net: NetName=NetU2_7 Pin=U5-3
+Added Net: Name=NetU2_7
+Added Member To Class: ClassName=ESP-LED-Schematic Member=Component U5 74LVC1T45GW,125

@@ -1,0 +1,28 @@
+PCAD Importer Log
+Project : FT230XQ-R.LibPkg
+
+Section : C:\Users\jdiro\Desktop\ESP-LED-Board\Libraries\FT230XQ-R.lia
+    Section : PCB Library - FT230XQ-R.PcbLib
+        Section : Load Messages
+            Warning - 1 : Skipping Token FT230XQ-R On Line 149
+            Warning - 1 : Skipping Token attachedSymbol On Line 346
+        EndSection
+
+        Section : Import Messages
+        EndSection
+    EndSection
+
+    Section : SCH Library - FT230XQ-R.SchLib
+        Section : Parsing Messages
+            Warning - 1 : Skipping Token padStyleDef On Line 9
+            Warning - 1 : Skipping Token padStyleDef On Line 21
+            Warning - 1 : Skipping Token multiLayer On Line 96
+            Warning - 1 : Skipping Token layerContents On Line 115
+            Warning - 1 : Skipping Token layerContents On Line 131
+            Warning - 1 : Skipping Token layerContents On Line 139
+        EndSection
+
+        Section : Generating SCH Library - FT230XQ-R.SchLib
+        EndSection
+    EndSection
+EndSection
